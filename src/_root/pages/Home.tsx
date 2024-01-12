@@ -1,13 +1,12 @@
 import PostCard from "@/components/shared/PostCard";
 import { useGetRecentPosts } from "@/lib/react-query/queriesMutation";
 import { Models } from "appwrite";
-import React from "react";
 
 const Home = () => {
   const {
     data: posts,
     isLoading: isPostLoading,
-    isError: isErrorPosts,
+    // isError: isErrorPosts,
   } = useGetRecentPosts();
   console.log(posts);
 

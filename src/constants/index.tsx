@@ -1,15 +1,4 @@
-import {
-  ArrowDownWideNarrow,
-  BookMarkedIcon,
-  Bookmark,
-  Camera,
-  Globe,
-  HomeIcon,
-  PlusSquareIcon,
-  PowerSquareIcon,
-  Save,
-  User,
-} from "lucide-react";
+import { Bookmark, Globe, HomeIcon, PlusSquareIcon, User } from "lucide-react";
 
 export const sidebarLinks = [
   {

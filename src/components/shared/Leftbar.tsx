@@ -1,7 +1,7 @@
 import { sidebarLinks } from "@/constants";
 import { useUserContext } from "@/context/AuthContext";
 import { InstagramIcon, LogOutIcon } from "lucide-react";
-import React, { useEffect } from "react";
+import  { useEffect } from "react";
 import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { Button } from "../ui/button";
 import { useSignOutAccount } from "@/lib/react-query/queriesMutation";

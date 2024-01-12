@@ -7,7 +7,7 @@ import {
 import { Models } from "appwrite";
 import { Bookmark, BookmarkCheck, Heart, HeartCrack } from "lucide-react";
 import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+// import { useLocation } from "react-router-dom";
 
 type PostStatsProps = {
   post: Models.Document;
@@ -15,7 +15,7 @@ type PostStatsProps = {
 };
 
 const PostStats = ({ post, userId }: PostStatsProps) => {
-  const location = useLocation();
+  // const location = useLocation();
   const likesList = post.likes.map((user: Models.Document) => user.$id);
 
   const [likes, setLikes] = useState<string[]>(likesList);

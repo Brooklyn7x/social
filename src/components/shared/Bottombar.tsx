@@ -1,9 +1,8 @@
-import { bottombarLinks, sidebarLinks } from "@/constants";
-import { useUserContext } from "@/context/AuthContext";
+import { bottombarLinks } from "@/constants";
+
 import { Link, useLocation } from "react-router-dom";
 
 const Bottombar = () => {
-  const { user } = useUserContext();
   const { pathname } = useLocation();
   return (
     <div className="md:hidden bottom-0 z-50 sticky w-full px-5 py-4 flex items-center justify-between border">

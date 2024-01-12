@@ -1,5 +1,5 @@
 import { Upload } from "lucide-react";
-import React, { useCallback, useState } from "react";
+import { useCallback, useState } from "react";
 import { FileWithPath, useDropzone } from "react-dropzone";
 import { Button } from "../ui/button";
 
@@ -9,9 +9,10 @@ interface FileUploaderProps {
 }
 
 const FileUploader = ({ fieldChange, mediaUrl }: FileUploaderProps) => {
-  const [files, setFiles] = useState<File[]>([]);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [, setFiles] = useState<File[]>([]);
   const [url, setUrl] = useState(mediaUrl);
-
+  
   const onDrop = useCallback(
     (acceptedFiles: FileWithPath[]) => {
       setFiles(acceptedFiles);
@@ -23,7 +24,7 @@ const FileUploader = ({ fieldChange, mediaUrl }: FileUploaderProps) => {
 
   const { getRootProps, getInputProps } = useDropzone({
     onDrop,
-    accept: { "image/*": [".png", ".jpeg", ".svg"] }, // Updated syntax
+    accept: { "image/*": [".png", ".jpeg", ".svg"] }, 
   });
 
   return (
