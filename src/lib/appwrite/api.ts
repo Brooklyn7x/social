@@ -347,7 +347,6 @@ export async function deletePost(postId?: string, imageId?: string) {
   }
 }
 
-
 export async function getUserPosts(userId?: string) {
   if (!userId) return;
 
@@ -365,8 +364,6 @@ export async function getUserPosts(userId?: string) {
     console.log(error);
   }
 }
-
-
 
 export async function searchPosts(searchTerm: string) {
   try {

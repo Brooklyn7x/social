@@ -1,4 +1,9 @@
-import { useInfiniteQuery, useMutation, useQuery, useQueryClient } from "react-query";
+import {
+  useInfiniteQuery,
+  useMutation,
+  useQuery,
+  useQueryClient,
+} from "react-query";
 import {
   createPost,
   createUserAccount,
@@ -18,8 +23,6 @@ import {
 } from "../appwrite/api";
 import { INewPost, INewUser, IUpdatePost } from "@/types";
 import { QUERY_KEYS } from "./queriesKey";
-
-
 
 export const useCreateAccount = () => {
   return useMutation({
@@ -163,7 +166,6 @@ export const useDeletePost = () => {
   });
 };
 
-
 export const useGetUserPosts = (userId?: string) => {
   return useQuery({
     queryKey: [QUERY_KEYS.GET_USER_POSTS, userId],
@@ -171,7 +173,6 @@ export const useGetUserPosts = (userId?: string) => {
     enabled: !!userId,
   });
 };
-
 
 export const useGetPosts = () => {
   return useInfiniteQuery({
