@@ -1,15 +1,10 @@
-
 import PostCard from "@/components/shared/PostCard";
 import { useGetRecentPosts } from "@/lib/react-query/queriesMutation";
 import { Models } from "appwrite";
 import { Loader2 } from "lucide-react";
 
 const Home = () => {
-  const {
-    data: posts,
-    isLoading: isPostLoading,
-    // isError: isErrorPosts,
-  } = useGetRecentPosts();
+  const { data: posts, isLoading: isPostLoading } = useGetRecentPosts();
 
   return (
     <div className="flex flex-1">

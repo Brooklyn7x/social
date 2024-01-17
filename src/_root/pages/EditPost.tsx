@@ -1,13 +1,13 @@
 import PostForm from "@/components/forms/PostForm";
 import { useGetPostById } from "@/lib/react-query/queriesMutation";
-import { Edit } from "lucide-react";
+import { Edit, Loader } from "lucide-react";
 import { useParams } from "react-router-dom";
 
 const EditPost = () => {
   const { id } = useParams();
   const { data: post, isLoading } = useGetPostById(id);
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <Loader />;
 
   return (
     <div className="flex flex-1">

@@ -4,6 +4,7 @@ import { Models } from "appwrite";
 import { Edit } from "lucide-react";
 import { Link } from "react-router-dom";
 import PostStats from "./PostStats";
+import { Filter } from "./Filter";
 
 type PostCardProps = {
   post: Models.Document;
@@ -42,6 +43,8 @@ const PostCard = ({ post }: PostCardProps) => {
         >
           <Edit className="w-5 h-5" />
         </Link>
+
+        {/* <Filter /> */}
       </div>
 
       <Link to={`/posts/${post.$id}`}>

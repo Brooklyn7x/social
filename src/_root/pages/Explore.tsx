@@ -1,8 +1,9 @@
+import { Filter } from "@/components/shared/Filter";
 import GridPostList from "@/components/shared/GridPostList";
 import { Input } from "@/components/ui/input";
 import useDebounce from "@/hooks/useDebounce";
 import { useGetPosts, useSearchPosts } from "@/lib/react-query/queriesMutation";
-import { Filter, Loader, } from "lucide-react";
+import { Loader } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
 
@@ -39,7 +40,7 @@ const Explore = () => {
     if (inView && !searchValue) {
       fetchNextPage();
     }
-  }, [inView, searchValue]);
+  }, []);
 
   if (!posts)
     return (
@@ -75,7 +76,7 @@ const Explore = () => {
         <h3 className="font-bold md:text-2xl">Popular Today</h3>
 
         <div className="flex items-center justify-center gap-3 bg-dark-3 rounded-xl px-4 py-2 cursor-pointer">
-          <p className="small-medium md:base-medium text-light-2">All</p>
+          {/* <p className="small-medium md:base-medium text-light-2">All</p> */}
           <Filter />
         </div>
       </div>
