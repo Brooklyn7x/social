@@ -4,7 +4,6 @@ import { Models } from "appwrite";
 import { Edit } from "lucide-react";
 import { Link } from "react-router-dom";
 import PostStats from "./PostStats";
-import { Filter } from "./Filter";
 
 type PostCardProps = {
   post: Models.Document;
