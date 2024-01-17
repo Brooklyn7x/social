@@ -3,12 +3,12 @@ import { Link, useNavigate } from "react-router-dom";
 import { Button } from "../ui/button";
 import { useSignOutAccount } from "@/lib/react-query/queriesMutation";
 import { useEffect } from "react";
-import { useUserContext } from "@/context/AuthContext";
+// import { useUserContext } from "@/context/AuthContext";
 import { ModeToggle } from "../toggle-theme";
 
 const Topbar = () => {
   const navigate = useNavigate();
-  const { user } = useUserContext();
+  // const { user } = useUserContext();
   const { mutate: signOut, isSuccess } = useSignOutAccount();
 
   useEffect(() => {
@@ -24,7 +24,7 @@ const Topbar = () => {
         </Link>
 
         <div className="flex gap-2">
-          <Link
+          {/* <Link
             to={`/profile/${user.id}`}
             className="flex items-center justify-center"
           >
@@ -33,7 +33,7 @@ const Topbar = () => {
               alt="profile-img"
               className="h-8 w-8 rounded-full gap-2"
             />
-          </Link>
+          </Link> */}
 
           <ModeToggle />
 

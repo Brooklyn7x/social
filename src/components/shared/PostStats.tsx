@@ -1,5 +1,5 @@
 import {
-  useDeleteSavedPost,
+  // useDeleteSavedPost,
   useGetCurrentUser,
   useLikePost,
   useSavePost,
@@ -22,8 +22,8 @@ const PostStats = ({ post, userId }: PostStatsProps) => {
   const [isSaved, setIsSaved] = useState(false);
 
   const { mutate: likePost } = useLikePost();
-  const { mutate: savePost } = useSavePost();
-  const { mutate: deleteSavePost } = useDeleteSavedPost();
+  const { mutate: savePosts } = useSavePost();
+  // const { mutate: deleteSavePost } = useDeleteSavedPost();
 
   const { data: currentUser } = useGetCurrentUser();
 
@@ -33,7 +33,7 @@ const PostStats = ({ post, userId }: PostStatsProps) => {
 
   useEffect(() => {
     setIsSaved(!!savedPostRecord);
-  }, [currentUser]);
+  }, []);
 
   const handleLikePost = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -53,12 +53,14 @@ const PostStats = ({ post, userId }: PostStatsProps) => {
   const handleSavePost = (e: React.MouseEvent) => {
     e.stopPropagation();
 
-    if (savedPostRecord) {
-      setIsSaved(false);
-      return deleteSavePost(savedPostRecord.$id);
-    }
+    // if (savedPostRecord) {
+    //   setIsSaved(false);
+    //   return deleteSavePost(savedPostRecord.$id);
+    // }
+    console.log({ userId: userId, postId: post.$id });
 
-    savePost({ userId: userId, postId: post.$id });
+    savePosts({ userId: userId, postId: post.$id });
+
     setIsSaved(true);
   };
 

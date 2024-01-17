@@ -172,7 +172,6 @@ export async function uploadFile(file: File) {
       ID.unique(),
       file
     );
-    console.log(uploadedFile);
     return uploadedFile;
   } catch (error) {
     console.log(error);
@@ -210,9 +209,9 @@ export async function likePost(postId: string, likesArray: string[]) {
   }
 }
 
-export async function savePost(userId: string, postId: string) {
+export async function savePosts(userId: string, postId: string) {
   try {
-    const updatedPost = await databases.createDocument(
+    const Post = await databases.createDocument(
       appwriteConfig.databases,
       appwriteConfig.savesCollections,
       ID.unique(),
@@ -221,10 +220,9 @@ export async function savePost(userId: string, postId: string) {
         post: postId,
       }
     );
-
-    if (!updatedPost) throw Error;
-
-    return updatedPost;
+    if (!Post) throw Error;
+    return Post;
+    
   } catch (error) {
     console.log(error);
   }
@@ -297,7 +295,7 @@ export async function updatePost(post: IUpdatePost) {
       appwriteConfig.postsCollections,
       post.postId,
       {
-        caption: post.caption,
+        captions: post.caption,
         imageUrl: image.imageUrl,
         imageId: image.imageId,
         location: post.location,
@@ -364,6 +362,21 @@ export async function getUserPosts(userId?: string) {
     console.log(error);
   }
 }
+export async function getUserById(userId: string) {
+  try {
+    const user = await databases.getDocument(
+      appwriteConfig.databases,
+      appwriteConfig.userCollections,
+      userId
+    );
+
+    if (!user) throw Error;
+
+    return user;
+  } catch (error) {
+    console.log(error);
+  }
+}
 
 export async function searchPosts(searchTerm: string) {
   try {
@@ -398,6 +411,28 @@ export async function getInfinitePosts({ pageParam }: { pageParam: number }) {
     if (!posts) throw Error;
 
     return posts;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export async function getUsers(limit?: number) {
+  const queries: any[] = [Query.orderDesc("$createdAt")];
+
+  if (limit) {
+    queries.push(Query.limit(limit));
+  }
+
+  try {
+    const users = await databases.listDocuments(
+      appwriteConfig.databases,
+      appwriteConfig.userCollections,
+      queries
+    );
+
+    if (!users) throw Error;
+
+    return users;
   } catch (error) {
     console.log(error);
   }
