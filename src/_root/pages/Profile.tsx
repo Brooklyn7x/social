@@ -1,7 +1,7 @@
 import GridPostList from "@/components/shared/GridPostList";
 import { Button } from "@/components/ui/button";
 import { useUserContext } from "@/context/AuthContext";
-import { BookMarked, Bookmark, Edit, Heart, Loader } from "lucide-react";
+import { Bookmark, Edit, Heart, Loader } from "lucide-react";
 import { useGetUserById } from "@/lib/react-query/queriesMutation";
 import {
   Route,
