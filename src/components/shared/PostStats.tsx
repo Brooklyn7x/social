@@ -1,3 +1,4 @@
+import { deleteSavedPost } from "@/lib/appwrite/api";
 import {
   // useDeleteSavedPost,
   useGetCurrentUser,
@@ -5,7 +6,7 @@ import {
   useSavePost,
 } from "@/lib/react-query/queriesMutation";
 import { Models } from "appwrite";
-import { Bookmark, BookmarkCheck, Heart, HeartCrack } from "lucide-react";
+import { Bookmark, BookmarkCheck, Heart, HeartCrack, MessageCircle } from "lucide-react";
 import React, { useEffect, useState } from "react";
 // import { useLocation } from "react-router-dom";
 
@@ -53,11 +54,10 @@ const PostStats = ({ post, userId }: PostStatsProps) => {
   const handleSavePost = (e: React.MouseEvent) => {
     e.stopPropagation();
 
-    // if (savedPostRecord) {
-    //   setIsSaved(false);
-    //   return deleteSavePost(savedPostRecord.$id);
-    // }
-    console.log({ userId: userId, postId: post.$id });
+    if (savedPostRecord) {
+      setIsSaved(false);
+      return deleteSavedPost(savedPostRecord.$id);
+    }
 
     savePosts({ userId: userId, postId: post.$id });
 
@@ -66,7 +66,7 @@ const PostStats = ({ post, userId }: PostStatsProps) => {
 
   return (
     <div className="flex items-center justify-between z-20">
-      <div className="flex items-center gap-2 mr-5">
+      <div className="flex items-center gap-3 mr-5">
         {likes ? (
           <HeartCrack
             className="cursor-pointer w-5 h-5 "
@@ -77,6 +77,8 @@ const PostStats = ({ post, userId }: PostStatsProps) => {
         )}
 
         <p>{likes.length}</p>
+
+        <MessageCircle />
       </div>
 
       {isSaved ? (

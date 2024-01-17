@@ -13,6 +13,7 @@ import {
   getInfinitePosts,
   getPostById,
   getRecentPost,
+  getUserById,
   getUserPosts,
   likePost,
   savePosts,
@@ -89,29 +90,19 @@ export const useLikePost = () => {
   });
 };
 
-// export const useSavePost = () => {
-//   // const queryClient = useQueryClient();
-//   return useMutation({
-//     mutationFn: ({ userId, postId }: { userId: string; postId: string }) =>
-//       savePost(userId, postId),
-//     // onSuccess: () => {
-//     //   queryClient.invalidateQueries({
-//     //     queryKey: [QUERY_KEYS.GET_RECENT_POSTS],
-//     //   });
-//     //   // queryClient.invalidateQueries({
-//     //   //   queryKey: [QUERY_KEYS.GET_POSTS],
-//     //   // });
-//     //   // queryClient.invalidateQueries({
-//     //   //   queryKey: [QUERY_KEYS.GET_CURRENT_USER],
-//     //   // });
-//     // },
-//   });
-// };
-
 export const useSavePost = () => {
+  const queryClient = useQueryClient();
   return useMutation({
     mutationFn: ({ userId, postId }: { userId: string; postId: string }) =>
       savePosts(userId, postId),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: [QUERY_KEYS.GET_RECENT_POSTS],
+      });
+      queryClient.invalidateQueries({
+        queryKey: [QUERY_KEYS.GET_CURRENT_USER],
+      });
+    },
   });
 };
 
@@ -145,6 +136,14 @@ export const useGetPostById = (postId?: string) => {
     queryKey: [QUERY_KEYS.GET_POST_BY_ID, postId],
     queryFn: () => getPostById(postId),
     enabled: !!postId,
+  });
+};
+
+export const useGetUserById = (userId: string) => {
+  return useQuery({
+    queryKey: [QUERY_KEYS.GET_USER_BY_ID, userId],
+    queryFn: () => getUserById(userId),
+    enabled: !!userId,
   });
 };
 

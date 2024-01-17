@@ -15,9 +15,9 @@ const PostCard = ({ post }: PostCardProps) => {
   if (!post.creator) return;
 
   return (
-    <div className="rounded-3xl border p-5 lg:p-7 w-full max-w-screen-sm">
+    <div className="rounded-xl border p-5 lg:p-7 w-full max-w-screen-sm">
       <div className="flex items-center justify-between">
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3 mb-2">
           <Link to={`/profile/${post.creator?.$id}`}>
             <img
               src={post.creator?.imageUrl || null}
@@ -25,9 +25,10 @@ const PostCard = ({ post }: PostCardProps) => {
               alt="post-img"
             />
           </Link>
+          <p className="text-base font-medium">{post.creator.name}</p>
 
           <div className="flex flex-col">
-            <p className="text-base font-medium">{post.creator.name}</p>
+            {/* <p className="text-base font-medium">{post.creator.name}</p> */}
             <div className="flex gap-2 text-xs text-muted-foreground">
               <p>{multiFormatDateString(post.$createdAt)}</p>-
               <p>{post.location}</p>
@@ -44,15 +45,6 @@ const PostCard = ({ post }: PostCardProps) => {
       </div>
 
       <Link to={`/posts/${post.$id}`}>
-        <div className="text-[14px] font-medium leading-[140%]">
-          <p>{post.captions}</p>
-          <ul className="flex gap-1 mt-2">
-            {post.tags.map((tag: string) => (
-              <li key={tag}>#{tag}</li>
-            ))}
-          </ul>
-        </div>
-
         <img
           src={post.imageUrl || null}
           className=" h-64 xs:h-[400px] lg:h-[450px] w-full rounded-[24px] object-cover mb-5"
@@ -61,6 +53,16 @@ const PostCard = ({ post }: PostCardProps) => {
       </Link>
 
       <PostStats post={post} userId={user.id} />
+
+      <div className="text-[14px] font-medium leading-[140%] flex gap-3 items-center mt-2 ">
+        <p className="text-base font-medium">{post.creator.name}</p>
+        <p>{post.captions}</p>
+      </div>
+      <ul className="flex gap-1 mt-2">
+        {post.tags.map((tag: string) => (
+          <li key={tag}>#{tag}</li>
+        ))}
+      </ul>
     </div>
   );
 };

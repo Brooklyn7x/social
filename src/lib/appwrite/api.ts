@@ -222,7 +222,6 @@ export async function savePosts(userId: string, postId: string) {
     );
     if (!Post) throw Error;
     return Post;
-    
   } catch (error) {
     console.log(error);
   }
