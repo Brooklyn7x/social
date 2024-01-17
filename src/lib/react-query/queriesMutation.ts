@@ -1,5 +1,4 @@
 import {
-  QueryClient,
   useInfiniteQuery,
   useMutation,
   useQuery,
